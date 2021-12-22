@@ -2,7 +2,7 @@
 
 PROJNAME=ld2rdf
 
-ROOTDIR=$(realpath $(dirname $0))
+ROOTDIR=$(cd $(dirname $0); pwd -P)
 DISTDIR=$ROOTDIR/dist/mac
 TMPDIR=$ROOTDIR/tmp/mac
 

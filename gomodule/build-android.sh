@@ -5,7 +5,7 @@ export ANDROID_HOME=~/Library/Android/sdk/
 export ANDROID_NDK_HOME=~/Library/Android/sdk/ndk/$(ls $ANDROID_HOME/ndk | head -1)
 export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jre/Contents/Home
 
-ROOTDIR=$(realpath $(dirname $0))
+ROOTDIR=$(cd $(dirname $0); pwd -P)
 NDK_DIR=$ROOTDIR/tmp/ndk-toolchain
 DISTDIR=$ROOTDIR/../android/src/main
 TMPDIR=$ROOTDIR/tmp/android
