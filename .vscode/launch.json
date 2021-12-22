@@ -5,12 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "json_ld_2_rdf",
+            "name": "jsonLd2Rdf",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "json_ld_2_rdf (profile mode)",
+            "name": "jsonLd2Rdf (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"

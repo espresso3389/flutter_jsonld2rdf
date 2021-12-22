@@ -27,3 +27,7 @@
 .dart_tool/
 .packages
 build/
+
+**/tmp/*
+**/dist/*
+/.dart_tool/

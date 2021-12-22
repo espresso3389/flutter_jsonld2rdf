@@ -4,7 +4,6 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:ffi/ffi.dart';
-import 'package:http/http.dart' as http;
 
 typedef _InitFunc = int Function(Pointer<Void>);
 typedef _InitFuncN = Int64 Function(Pointer<Void>);
@@ -69,7 +68,7 @@ class _Result {
 }
 
 abstract class JsonLd2Rdf {
-  static final _ld2rdfLib = Platform.isIOS ? DynamicLibrary.process() : DynamicLibrary.open("libld2rdf.so");
+  static final _ld2rdfLib = Platform.isIOS ? DynamicLibrary.process() : DynamicLibrary.open(_moduleName);
 
   static final _InitFunc _init = _ld2rdfLib.lookup<NativeFunction<_InitFuncN>>("JsonToRdfInitSendPort").asFunction();
 
@@ -146,4 +145,10 @@ abstract class JsonLd2Rdf {
           return result.str;
         },
       );
+
+  static String get _moduleName {
+    if (Platform.isAndroid) return "libld2rdf.so";
+    if (Platform.isMacOS) return "gomodule/dist/mac/libld2rdf.dylib";
+    throw Exception('Your platform is not currently supported.');
+  }
 }
