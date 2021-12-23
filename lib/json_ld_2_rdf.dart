@@ -177,7 +177,7 @@ abstract class JsonLd2Rdf {
   static String get moduleName {
     if (_moduleName != null) return _moduleName!;
     if (Platform.isAndroid) return "libld2rdf.so";
-    if (Platform.isMacOS) return "gomodule/dist/mac/libld2rdf.dylib";
+    if (Platform.isMacOS) return "libld2rdf.dylib";
     throw Exception('Your platform is not currently supported.');
   }
 }

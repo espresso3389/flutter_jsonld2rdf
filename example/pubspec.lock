@@ -200,4 +200,4 @@ packages:
     version: "2.1.1"
 sdks:
   dart: ">=2.16.0-122.0.dev <3.0.0"
-  flutter: ">=2.5.0"
+  flutter: ">=1.20.0"
