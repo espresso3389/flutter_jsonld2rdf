@@ -68,7 +68,7 @@ class _Result {
 }
 
 abstract class JsonLd2Rdf {
-  static final _ld2rdfLib = Platform.isIOS ? DynamicLibrary.process() : DynamicLibrary.open(_moduleName);
+  static final _ld2rdfLib = _load();
 
   static final _InitFunc _init = _ld2rdfLib.lookup<NativeFunction<_InitFuncN>>("JsonToRdfInitSendPort").asFunction();
 
@@ -146,9 +146,40 @@ abstract class JsonLd2Rdf {
         },
       );
 
-  static String get _moduleName {
+  static DynamicLibrary _load() {
+    if (_moduleLoader != null) {
+      try {
+        return _moduleLoader!();
+      } catch (e) {
+        // fall-through
+      }
+    }
+    return Platform.isIOS ? DynamicLibrary.process() : DynamicLibrary.open(moduleName);
+  }
+
+  static String? _moduleName;
+  static ModuleLoadFunction? _moduleLoader;
+
+  /// Set custom module `libld2rdf` loading method. If you set loading method, [moduleName] will be reset.
+  static set moduleLoader(ModuleLoadFunction? loader) {
+    _moduleLoader = loader;
+    _moduleName = null;
+  }
+
+  static ModuleLoadFunction? get moduleLoader => _moduleLoader;
+
+  /// Set custom module path; If you set the module path, [moduleLoader] will be reset.
+  static set moduleName(String moduleName) {
+    _moduleLoader = null;
+    _moduleName = moduleName;
+  }
+
+  static String get moduleName {
+    if (_moduleName != null) return _moduleName!;
     if (Platform.isAndroid) return "libld2rdf.so";
     if (Platform.isMacOS) return "gomodule/dist/mac/libld2rdf.dylib";
     throw Exception('Your platform is not currently supported.');
   }
 }
+
+typedef ModuleLoadFunction = DynamicLibrary Function();

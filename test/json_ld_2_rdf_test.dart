@@ -5,6 +5,9 @@ import 'package:http/http.dart' as http;
 void main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  // for testing on macOS, we should set the module path explicitly.
+  JsonLd2Rdf.moduleName = 'gomodule/dist/mac/libld2rdf.dylib';
+
   const jsonUrl = 'https://json-ld.org/test-suite/tests/toRdf-0028-in.jsonld';
   const jsonUrlExpects =
       '''<http://example.org/fact1> <http://purl.org/dc/terms/title> "Hello World!" <http://example.org/sig1> .
