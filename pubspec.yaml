@@ -1,7 +1,7 @@
 name: json_ld_2_rdf
 description: A new flutter plugin project.
 version: 0.0.1
-homepage:
+repository: https://github.com/espresso3389/flutter_jsonld2rdf
 
 environment:
   sdk: ">=2.16.0-122.0.dev <3.0.0"
@@ -33,8 +33,6 @@ flutter:
         package: jp.espresso3389.json_ld_2_rdf
         pluginClass: JsonLd2RdfPlugin
       ios:
-        pluginClass: JsonLd2RdfPlugin
-      macos:
         pluginClass: JsonLd2RdfPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
