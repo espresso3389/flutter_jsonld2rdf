@@ -42,6 +42,20 @@ The following script will build `gomobile/dist/mac/libld2rdf.dylib` that support
 gomodule/build-mac.sh
 ```
 
+### Windows
+
+The following script will build `gomobile/dist/windows/x86_64/libld2rdf.dll`:
+
+```
+gomodule/build-windows.sh
+```
+
+But it is expected to run on Linux or such environment; at least the following prerequisites:
+
+- gcc-multilib
+- gcc-mingw-w64
+- binutils-mingw-w64
+
 ## References
 
 - [Async messaging between Flutter and C++ using Dart ffi NativePort](https://gist.github.com/espresso3389/be5674ab4e3154f0b7c43715dcef3d8d)

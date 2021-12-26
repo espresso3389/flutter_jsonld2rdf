@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_ld_2_rdf/json_ld_2_rdf.dart';
 import 'package:http/http.dart' as http;
@@ -6,7 +8,11 @@ void main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   // for testing on macOS, we should set the module path explicitly.
-  JsonLd2Rdf.moduleName = 'gomodule/dist/mac/libld2rdf.dylib';
+  if (Platform.isMacOS) {
+    JsonLd2Rdf.moduleName = 'gomodule/dist/mac/libld2rdf.dylib';
+  } else if (Platform.isWindows) {
+    JsonLd2Rdf.moduleName = 'gomodule/dist/windows/x86_64/libld2rdf.dll';
+  }
 
   const jsonUrl = 'https://json-ld.org/test-suite/tests/toRdf-0028-in.jsonld';
   const jsonUrlExpects =
